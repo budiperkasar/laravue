@@ -14,8 +14,21 @@ class CreateWorkerCategoriesTable extends Migration
     public function up()
     {
         Schema::create('worker_categories', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('group_id')->unsigned();
+            $table->integer('parent')->nullable();
+            $table->integer('entry_by')->nullable();
+            $table->boolean('active')->nullable();
+            $table->boolean('featured')->nullable();
+            $table->integer('priority')->nullable();
+            $table->string('title');
+            $table->string('slug');
+            $table->string('content')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('meta_desc')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
